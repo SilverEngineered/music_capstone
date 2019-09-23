@@ -1,1 +1,1 @@
-Ye Old Scripts Live here
+This directory is for resources
