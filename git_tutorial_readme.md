@@ -11,10 +11,8 @@
     ` git checkout new-sample-branch`
 4. Now that you are on your own feature branch, make whatever changes you want!
 5. Once you complete your feature, **add, commit and push** your change to Github. If you do everything correctly, you would see your change in Github branch: new-sample-branch
-    
-    `git add .`
 
-    `git commit -a`
+    `git commit -am "commit msg"`
 
     `git push origin new-sample-branch`
 6. Push changes to **qa** branch for testing
