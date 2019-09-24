@@ -1,0 +1,30 @@
+#:kivy 1.11.1
+
+<MenuScreen>:
+    BoxLayout:
+        Button:
+            text: 'Settings'
+            font_name: 'Resources/Fonts/UbuntuMono-R'
+            font_size: 50
+
+            on_press: root.manager.current = 'settings'
+        Button:
+            text: 'Quit'
+            font_name: 'Resources/Fonts/UbuntuMono-R'
+            font_size: 50
+
+            on_press: app.get_running_app().stop() # Exit the app
+
+<SettingsScreen>:
+    BoxLayout:
+        Button:
+            text: 'Change a setting'
+            font_name: 'Resources/Fonts/UbuntuMono-R'
+            font_size: 50
+
+        Button:
+            text: 'Back'
+            font_name: 'Resources/Fonts/UbuntuMono-R'
+            font_size: 50
+
+            on_press: root.manager.current = 'menu'
