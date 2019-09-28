@@ -3,8 +3,10 @@ from kivy.lang import Builder
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.floatlayout import FloatLayout
 
-Builder.load_file('menus.kv')
+Builder.load_file('kv_files/menus.kv')
+Builder.load_file('kv_files/piano.kv')
 
 class MenuScreen(Screen):
     pass
