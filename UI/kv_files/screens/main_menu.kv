@@ -1,0 +1,82 @@
+<MMButton@Button>:
+    size_hint: .2, .2
+
+
+<MainMenuScreen>:
+    # Layout for the top header
+    BoxLayout:
+        id: main_group
+        orientation:'vertical'
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+
+        BoxLayout:
+            id: header_group
+            orientation: 'horizontal'
+            size_hint: 1, .075
+            canvas:
+                Color:
+                    rgba: 1, 0, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        BoxLayout:
+            id: title_group
+            orientation: 'horizontal'
+            size_hint: 1, .3
+            canvas:
+                Color:
+                    rgba: 0, 1, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                id: game_title_label
+                text: app.get_text("mm_title")
+                font: default_font
+                font_size: root.width / ((len(app.get_text("mm_title"))) * .75)
+
+        FloatLayout:
+            id: bulk_group
+            orientation: 'horizontal'
+            canvas:
+                Color:
+                    rgba: 0, 0, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            MMButton:
+                id: quit_button
+                text: app.get_text("mm_quit")
+                on_press: app.stop()
+                pos_hint: {'center_x':.65, 'center_y':.35}
+
+            MMButton:
+                id: settings_button
+                text: app.get_text("mm_settings")
+                on_press: app.callback_manager("settings callback")
+                pos_hint: {'center_x':.35, 'center_y':.35}
+
+            MMButton:
+                id: select_button
+                text: app.get_text("mm_begin")
+                on_press: app.callback_manager("begin callback")
+                pos_hint: {'center_x':.5, 'center_y': .65}
+
+        BoxLayout:
+            id: bottom_group
+            orientation: 'horizontal'
+            size_hint: 1, .075
+            canvas:
+                Color:
+                    rgba: 1, 0, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
