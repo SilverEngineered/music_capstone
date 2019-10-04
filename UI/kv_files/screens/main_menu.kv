@@ -1,5 +1,9 @@
+#:kivy 1.11.1
+#:import Factory kivy.factory.Factory
 <MMButton@Button>:
     size_hint: .2, .2
+    font: default_font
+    font_size: self.width / 8
 
 
 <MainMenuScreen>:
@@ -40,7 +44,7 @@
                 id: game_title_label
                 text: app.get_text("mm_title")
                 font: default_font
-                font_size: root.width / ((len(app.get_text("mm_title"))) * .75)
+                font_size: root.width / (len(self.text) * .75)
 
         FloatLayout:
             id: bulk_group
@@ -63,6 +67,7 @@
                 text: app.get_text("mm_settings")
                 on_press: app.callback_manager("settings callback")
                 pos_hint: {'center_x':.35, 'center_y':.35}
+                on_release: Factory.SettingsPopup().open()
 
             MMButton:
                 id: select_button
@@ -80,3 +85,56 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
+
+<SettingsPopup@Popup>:
+    auto_dismiss: False
+    title: app.get_text("set_title")
+    title_size: root.width / (3 *len(self.title))
+    size_hint: .8, .8
+    FloatLayout:
+        id: set_layout
+
+        Button:
+            id: exit_button
+            size_hint: .99, .07
+            pos_hint: {'center_x':.5, 'center_y':.045}
+            text: app.get_text("set_close")
+            on_release: root.dismiss()
+            font_size: root.width / (3.5 * len(self.text))
+            font: default_font
+            background_normal: ''
+            background_color: 0.666, 0.313, 0.313, .8
+        
+        BoxLayout:
+            orientation: 'vertical'
+            cols: 3
+            size_hint: 1, .2
+            pos_hint: {'center_x':.5, 'center_y':.9}
+            canvas:
+                Color:
+                    rgba: 0, 1, 0, .5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                id: volume_title
+                size_hint: .1, .3
+                pos_hint: {'x':0.005 ,'y':0.2}
+                text: app.get_text("set_vol_title")
+                font_size: root.width / (6 * len(self.text))
+
+            BoxLayout:
+                id: volume_slider
+                size_hint: 1, .8
+                Slider:
+                    id: volume_slider
+                    min: 0
+                    max: 100
+                    step: 1
+                    orientation: 'horizontal'
+                    value: app.get_value("volume_slider")
+                Label:
+                    id: volume_slider_val
+                    text: str(volume_slider.value)
+                    size_hint: .1, 1
+        

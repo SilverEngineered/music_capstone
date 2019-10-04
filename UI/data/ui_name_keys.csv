@@ -1,4 +1,7 @@
 mm_quit,Quit
 mm_settings,Settings
 mm_begin,Begin
-mm_title,Music Understanding Shows Idiots Coolness
+mm_title,Flappy Keys: The Working Title
+set_close,Exit Settings
+set_title,Settings
+set_vol_title,Volume

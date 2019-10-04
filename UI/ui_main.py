@@ -47,6 +47,9 @@ class PianoApp(App):
         '''
         return tld[prompt]
 
+    def get_value(self, key):
+        return 1
+
 
 if __name__ == '__main__':
     PianoApp().run()
