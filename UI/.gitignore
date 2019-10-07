@@ -1,6 +1,7 @@
 # Editors
 .vscode/
 .idea/
+ui_venv/
 
 # Vagrant
 .vagrant/
