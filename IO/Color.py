@@ -1,7 +1,6 @@
-
+from neopixel import Color
 
 class Color:
-  (0,0,0)
  	White	 = Color(255,255,255)
  	Red	= Color(255,0,0)
  	Lime =	Color(0,255,0)
