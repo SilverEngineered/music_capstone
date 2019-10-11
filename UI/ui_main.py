@@ -20,6 +20,9 @@ Config.set('graphics', 'width', 1280)
 Config.set('graphics', 'height', 800)
 Config.set('graphics', 'resizable', False)
 
+Config.set('kivy', 'keyboard_mode', 'dock')
+
+
 # Create the App
 print(tld)
 

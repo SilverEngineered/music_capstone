@@ -1,0 +1,48 @@
+#:kivy 1.11.1
+#:import Factory kivy.factory.Factory
+
+<SelectionScreen>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1, .5, .5, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        
+
+        TextInput:
+            id: search_bar
+            size_hint: .825, .065
+            pos_hint: {'x':.025, 'y':.890}
+            text: 'Enter a song name...'
+            multiline: False
+            font_size: root.width / 40
+        
+        Button:
+            text: 'Search'
+            id: search_button
+            font_size: 26
+            size_hint: .1, .065
+            pos_hint: {'x': .875, 'y':.890}
+
+        FloatLayout:
+            size_hint: .825, .825
+            pos_hint: {'x': .025, 'y':.035}
+            id: results_layout
+            canvas:
+                Color:
+                    rgba: .8, .8, .8, 1
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+        FloatLayout:
+            id: buttons_layout
+            size_hint: .175, .825
+            pos_hint: {'x': .875, 'y':.035}
+            Button:
+                text: "->"
+                font_size: 26
+                size_hint: .57, 1
+                pos_hint: {'x':0.01, 'center_y':.5}

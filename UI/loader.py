@@ -5,6 +5,7 @@ import csv
 
 Builder.load_file('kv_files/common.kv')
 Builder.load_file('kv_files/screens/main_menu.kv')
+Builder.load_file('kv_files/screens/selection.kv')
 Builder.load_file('kv_files/screen_manager.kv')
 
 # This is to load in any global lookup values

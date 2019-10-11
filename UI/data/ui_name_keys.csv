@@ -5,3 +5,4 @@ mm_title,Flappy Keys: The Working Title
 set_close,Exit Settings
 set_title,Settings
 set_vol_title,Volume
+quit_title,Are you sure you want to quit?
