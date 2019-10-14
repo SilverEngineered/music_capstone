@@ -28,6 +28,6 @@ class IO(object):
 	def pop(self):
 		self.queue.pop(-1)
 
-	def threaded_listen(self, duration):
-		listen_thread = threading.Thread(target=self.listen, args=(duration,))
+	def threaded_listen(self):
+		listen_thread = threading.Thread(target=self.listen)
 		listen_thread.start()
