@@ -27,5 +27,5 @@ class IO(object):
 		self.pixels[key] = color
 
 	def threaded_listen(self, duration):
-		listen_thread = threading.Thread(target=self.listen, args=duration)
+		listen_thread = threading.Thread(target=self.listen, args=(duration,))
 		listen_thread.start()
