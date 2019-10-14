@@ -1,6 +1,7 @@
 import board
 from neopixel import NeoPixel
 import mido
+import time
 import rtmidi
 
 class IO(object):
@@ -9,10 +10,14 @@ class IO(object):
 		self.pixels = NeoPixel(board.D18, self.num_keys)
 		self.inputs = mido.get_input_names()
 
-	def listen(self):
+	def listen(self, duration):
+		msg_list = []
+		start = time.time()
 		with mido.open_input(self.inputs[0]) as port:
-			for msg in port:
-				print(msg)
+			if time.time() - start > duration:
+				for msg in port:
+					msg_list.append(msg)
+			return msg_list
 
 	def light(self, key, color):
 		print("lighting")
