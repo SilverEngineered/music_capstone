@@ -13,7 +13,6 @@ class IO(object):
 		self.queue = []
 
 	def listen(self, duration):
-		#msg_list = []
 		with mido.open_input(self.inputs[0]) as port:
 			start = time.time()
 			for msg in port:
@@ -25,6 +24,12 @@ class IO(object):
 	def light(self, key, color):
 		print("lighting")
 		self.pixels[key] = color
+
+	def reset_queue(self):
+		self.queue = []
+
+	def pop(self):
+		self.queue.pop(-1)
 
 	def threaded_listen(self, duration):
 		listen_thread = threading.Thread(target=self.listen, args=(duration,))
