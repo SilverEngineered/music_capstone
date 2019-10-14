@@ -40,6 +40,6 @@ if __name__ == '__main__':
     s.turnOn(1,Color(0,255,0))
 
     for i in range(60):
-    	s.turnOn(i, Color(0,0,255)) 
-	time.sleep(1)
-	s.turnOff(i)
+        s.turnOn(i, Color(0,0,255)) 
+        time.sleep(1)
+        s.turnOff(i)
