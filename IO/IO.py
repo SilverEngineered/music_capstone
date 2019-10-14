@@ -12,14 +12,11 @@ class IO(object):
 		self.inputs = mido.get_input_names()
 		self.queue = []
 
-	def listen(self, duration):
+	def listen(self):
 		with mido.open_input(self.inputs[0]) as port:
 			start = time.time()
 			for msg in port:
-				if time.time() - start > duration:
-					return self.queue
-				else:
-					self.queue.append((msg, time.time() - start))
+				self.queue.append((msg, time.time() - start))
 
 	def light(self, key, color):
 		print("lighting")
