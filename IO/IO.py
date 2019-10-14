@@ -6,7 +6,7 @@ class IO(object):
 		s = Strip(self.num_keys)
 
 	def listen(self):
-		pass
+		print("listening")
 
 	def light(self):
-		pass
+		print("lighting")
