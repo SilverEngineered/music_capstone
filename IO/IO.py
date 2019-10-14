@@ -1,4 +1,4 @@
-import Strip
+from Strip import Strip
 
 class IO(object):
 	def __init__(self, num_keys):
