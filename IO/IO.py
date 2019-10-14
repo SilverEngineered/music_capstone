@@ -14,6 +14,6 @@ class IO(object):
 			for msg in port:
 				print(msg)
 
-	def light(self,key):
+	def light(self, key, color):
 		print("lighting")
-		self.pixels[key] = (255, 255, 255)
+		self.pixels[key] = color
