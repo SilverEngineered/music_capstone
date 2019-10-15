@@ -11,12 +11,14 @@ class IO(object):
 		self.pixels = NeoPixel(board.D18, self.num_keys)
 		self.inputs = mido.get_input_names()
 		self.queue = []
+		self.pause = False
 
 	def listen(self):
 		with mido.open_input(self.inputs[0]) as port:
 			start = time.time()
 			for msg in port:
-				self.queue.append((msg, time.time() - start))
+				if not self.pause:
+					self.queue.append((msg, time.time() - start))
 
 	def light(self, key, color):
 		print("lighting")
@@ -27,6 +29,7 @@ class IO(object):
 
 	def pop(self):
 		self.queue.pop(-1)
+
 
 	def threaded_listen(self):
 		listen_thread = threading.Thread(target=self.listen)
