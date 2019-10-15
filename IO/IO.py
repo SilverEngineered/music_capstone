@@ -1,3 +1,4 @@
+
 import board
 from neopixel import NeoPixel
 import mido
@@ -34,3 +35,4 @@ class IO(object):
 	def threaded_listen(self):
 		listen_thread = threading.Thread(target=self.listen)
 		listen_thread.start()
+
