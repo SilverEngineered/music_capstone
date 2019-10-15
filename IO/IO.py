@@ -5,6 +5,7 @@ import time
 import rtmidi
 import threading
 
+
 class IO(object):
 	def __init__(self, num_keys):
 		self.num_keys = num_keys
@@ -29,7 +30,6 @@ class IO(object):
 
 	def pop(self):
 		self.queue.pop(-1)
-
 
 	def threaded_listen(self):
 		listen_thread = threading.Thread(target=self.listen)
