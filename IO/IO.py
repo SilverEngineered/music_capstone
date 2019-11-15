@@ -18,6 +18,7 @@ class IO(object):
 		self.pause = False
 		self.BLUE = (0, 0, 255)
 		self.OFF = (0, 0, 0)
+
 	def listen(self):
 		with mido.open_input(self.inputs[0]) as port:
 			start = time.time()
@@ -27,7 +28,8 @@ class IO(object):
 
 	def light(self, key, color):
 		print("lighting")
-		self.pixels[key] = color
+		if key <= self.num_keys:
+			self.pixels[key] = color
 
 	def light_many(self, notes, color):
 		for i in notes:
