@@ -55,7 +55,7 @@ class IO(object):
 	def play(self):
 		for i in range(len(self.notes)):
 			self.light_many(self.notes[i], self.BLUE)
-			if i != len(self.notes - 1):
+			if i != len(self.notes) - 1:
 				time.sleep(self.times[i])
 				self.light_many(self.notes[i], self.OFF)
 			else:
