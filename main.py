@@ -1,6 +1,6 @@
 import argparse
 import pickle
-#from IO.IO import IO
+from IO.IO import IO
 
 
 parser = argparse.ArgumentParser()
@@ -24,8 +24,5 @@ if __name__ == "__main__":
     notes = data['notes']
     times = data['times']
     relative_times = get_relative_times(times)
-    print(times)
-    print(relative_times)
-    exit()
     io = IO(args.num_keys, notes, relative_times)
     io.play()
