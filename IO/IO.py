@@ -17,6 +17,7 @@ class IO(object):
 		self.queue = []
 		self.pause = False
 		self.BLUE = (0, 0, 255)
+		self.RED = (255, 0, 0)
 		self.OFF = (0, 0, 0)
 
 	def listen(self):
@@ -54,6 +55,11 @@ class IO(object):
 	def play(self):
 		for i in range(len(self.notes)):
 			self.light_many(self.notes[i], self.BLUE)
-			time.sleep(self.times[i])
-			self.light_many(self.notes[i], self.OFF)
+			if i != len(self.notes - 1):
+				time.sleep(self.times[i])
+				self.light_many(self.notes[i], self.OFF)
+			else:
+				self.light_many(self.notes[i], self.RED)
+				time.sleep(5)
+				self.light_many(self.notes[i], self.OFF)
 
