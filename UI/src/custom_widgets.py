@@ -5,14 +5,15 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.uix.image import Image
+from kivy.utils import get_color_from_hex
 
 import pprint
 
 hard_songs = {
-    'Astro Boy': './resources/astroboy.jpg',
-    'Jamie Gray': './resources/gray.jpg',
-    'Igor':  './resources/igor.png',
-    'Astro':  './resources/astro.jpg'
+    'Can\'t feel my face': ('./resources/astroboy.jpg', 'The Weekend'),
+    'Generic Song Name': ('./resources/gray.jpg', 'Jamie Gray'),
+    'I THINK':  ('./resources/igor.png', 'Tyler The Creator'),
+    'STOP TRYING TO BE GOD':  ('./resources/astro.jpg', 'Travis Scott')
 }
 
 
@@ -63,14 +64,16 @@ class SongSelector(FloatLayout):
     lineup = ListProperty([])
     cur_song = 0
     song_count = 0
-    song_title = CLabel(text='')
+    song_title = CLabel(text='', font_name='./resources/font.ttf', id='title')
+    song_artist = CLabel(text='', font_name='./resources/font.ttf')
 
     def __init__(self, **kwargs):
         super(SongSelector, self).__init__(**kwargs)
         # TODO: Implement actual addition of songs
         # This is temporary
         for key in hard_songs:
-            self.add_song(hard_songs[key], key)
+            self.add_song(t_path=hard_songs[key][0],
+                          name=key, artist=hard_songs[key][1])
 
         # Set up the title for the Song
         self.setup_title()
@@ -83,13 +86,19 @@ class SongSelector(FloatLayout):
         self.song_title.size_hint = .4, .1
         self.song_title.pos_hint = {'center_x': .5, 'center_y': .3}
         self.song_title.font_size = 40
-        self.song_title.color = .149, .047, .047, 1
+        self.song_title.color = get_color_from_hex('#565c5c')
 
-    def add_song(self, t_path, name):
+        self.add_widget(self.song_artist)
+        self.song_artist.size_hint = .4, .06
+        self.song_artist.pos_hint = {'center_x': .5, 'center_y': .25}
+        self.song_artist.font_size = 28
+        self.song_artist.color = get_color_from_hex('#879191')
+
+    def add_song(self, t_path, name, artist):
         if name in self.songs.keys():
             self.songs[name].set_thumbnail(t_path)
         else:
-            new_song = SongTile(name=name, t_path=t_path)
+            new_song = SongTile(name=name, t_path=t_path, artist=artist)
             self.songs[name] = new_song
             self.lineup.append(new_song)
             self.song_count += 1
@@ -119,6 +128,7 @@ class SongSelector(FloatLayout):
             c_song.size_hint = .5, .5
             c_song.pos_hint = {'center_x': .5, 'center_y': .6}
             self.song_title.text = c_song.name
+            self.song_artist.text = c_song.artist
 
     def inc_song(self, inc):
         if self.song_count <= 0:
@@ -131,19 +141,22 @@ class SongSelector(FloatLayout):
 
         self.draw_songs()
 
+    def get_song_name(self):
+        return self.lineup[self.cur_song].name
+
 
 class SongTile(Image):
     idn = StringProperty('')
     idt = StringProperty('')
     name = StringProperty('')
+    artist = StringProperty('')
 
-    def __init__(self, name, t_path, **kwargs):
+    def __init__(self, name, t_path, artist, **kwargs):
         super(SongTile, self).__init__(**kwargs)
         self.source = t_path
         self.name = name
+        self.artist = artist
 
     def set_thumbnail(self, t_path):
         self.source = t_path
-        self.height = 50
-        self.width = 50
         self.canvas.ask_update()

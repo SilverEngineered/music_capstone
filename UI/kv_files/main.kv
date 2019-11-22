@@ -20,8 +20,8 @@
             size_hint: 1, .5
             text: 'Piano Teacher'
             font_size: self.header_size * 2
+            font_name: './resources/font.ttf'
             color: hex('#4c4d4c')
-    
 
 <SelectionScreen@CScreen>:
     idn: 's_screen'
@@ -33,6 +33,8 @@
             pos: self.pos
     CFlay:
         idn: 's_flay'
+
+
         SongSelector:
             id: ss
             size_hint: 1, 1
@@ -42,18 +44,40 @@
                 background_color: hex('#80b8c7e0')
                 id: next_song
                 idn: 'next_song'
-                size_hint: .25, 1
-                pos_hint: {'center_x': .875, 'center_y':.5}
+                size_hint: .15, .1
+                pos_hint: {'center_x': .75, 'center_y':.1}
+                text: 'Next'
+                font_name: './resources/font.ttf'
+                font_size: 40
+                color: hex('#c5d6d5')
                 on_release: ss.inc_song(1)
+                
         
             CButton:
                 background_normal: ''
                 background_color: hex('#80b8c7e0')
                 id: last_song
                 idn: 'last_song'
-                size_hint: .25, 1
-                pos_hint: {'center_x': .125, 'center_y':.5}
-                on_release: ss.inc_song(-1)    
+                size_hint: .15, .1
+                pos_hint: {'center_x': .25, 'center_y':.1}
+                text: 'Last'
+                font_name: './resources/font.ttf'
+                font_size: 40
+                color: hex('#c5d6d5')
+                on_release: ss.inc_song(-1)
+            
+            CButton:
+                background_normal: ''
+                background_color: hex('#80b8c7e0')
+                id: select
+                idn: 'select_song'
+                size_hint: .15, .1
+                pos_hint: {'center_x': .5, 'center_y':.1}
+                text: 'Select'
+                font_name: './resources/font.ttf'
+                font_size: 40
+                color: hex('#c5d6d5')
+                on_release: print('selected: ' + str(ss.get_song_name()))
 
 
 <WidgetManager>:
