@@ -9,8 +9,10 @@ from kivy.uix.image import Image
 import pprint
 
 hard_songs = {
-    'Astro Boy': '/home/hirshjack/Desktop/ui_v2.1/UI/resources/2.jpg',
-    'Jamie Gray': '/home/hirshjack/Desktop/ui_v2.1/UI/resources/1.jpg'
+    'Astro Boy': './resources/astroboy.jpg',
+    'Jamie Gray': './resources/gray.jpg',
+    'Igor':  './resources/igor.png',
+    'Astro':  './resources/astro.jpg'
 }
 
 
@@ -61,12 +63,22 @@ class SongSelector(FloatLayout):
     lineup = ListProperty([])
     cur_song = 0
     song_count = 0
-    song_title = Label(text='')
+    song_title = CLabel(text='')
 
     def __init__(self, **kwargs):
         super(SongSelector, self).__init__(**kwargs)
+        # TODO: Implement actual addition of songs
+        # This is temporary
         for key in hard_songs:
             self.add_song(hard_songs[key], key)
+
+        # Set up the title for the Song
+        self.setup_title()
+
+        # Draw the songs
+        self.draw_songs()
+
+    def setup_title(self):
         self.add_widget(self.song_title)
         self.song_title.size_hint = .4, .1
         self.song_title.pos_hint = {'center_x': .5, 'center_y': .3}
@@ -79,26 +91,34 @@ class SongSelector(FloatLayout):
         else:
             new_song = SongTile(name=name, t_path=t_path)
             self.songs[name] = new_song
-            self.add_widget(new_song)
-            new_song.size_hint = 0, 0
-            new_song.pos_hint = {'x': 0, 'y': 0}
             self.lineup.append(new_song)
             self.song_count += 1
 
     def draw_songs(self):
+        for widget in self.walk():
+            if type(widget) is SongTile:
+                self.remove_widget(widget)
+
         if self.song_count > 0:
+            if self.cur_song < self.song_count - 1:
+                n_song = self.lineup[self.cur_song + 1]
+                self.add_widget(n_song)
+                n_song.size_hint = .35, .35
+                n_song.pos_hint = {'center_x': .65, 'center_y': .6}
+
+            if self.cur_song > 0:
+                p_song = self.lineup[self.cur_song - 1]
+                self.add_widget(p_song)
+                p_song.size_hint = .35, .35
+                p_song.pos_hint = {'center_x': .35, 'center_y': .6}
+
             c_song = self.lineup[self.cur_song]
-            # Set all non main songs invisible
-            for song in self.lineup:
-                song.size_hint = 0, 0
-                song.pos_hint = {'x': 0, 'y': 0}
+            self.add_widget(c_song)
 
             # Center the main song
             c_song.size_hint = .5, .5
             c_song.pos_hint = {'center_x': .5, 'center_y': .6}
             self.song_title.text = c_song.name
-        else:
-            return
 
     def inc_song(self, inc):
         if self.song_count <= 0:

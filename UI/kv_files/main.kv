@@ -36,22 +36,24 @@
         SongSelector:
             id: ss
             size_hint: 1, 1
-            pos_hint: {'center_x':.5, 'center_y':.5}        
-        CButton:
-            id: next_song
-            idn: 'next_song'
-            size_hint: .1, .8
-            pos_hint: {'center_x': .9, 'center_y':.5}
-            text: 'Next'
-            on_release: ss.inc_song(1)
+            pos_hint: {'center_x':.5, 'center_y':.5}
+            CButton:
+                background_normal: ''
+                background_color: hex('#80b8c7e0')
+                id: next_song
+                idn: 'next_song'
+                size_hint: .25, 1
+                pos_hint: {'center_x': .875, 'center_y':.5}
+                on_release: ss.inc_song(1)
         
-        CButton:
-            id: last_song
-            idn: 'last_song'
-            size_hint: .1, .8
-            pos_hint: {'center_x': .1, 'center_y':.5}
-            text: 'Last'
-            on_release: ss.inc_song(-1)
+            CButton:
+                background_normal: ''
+                background_color: hex('#80b8c7e0')
+                id: last_song
+                idn: 'last_song'
+                size_hint: .25, 1
+                pos_hint: {'center_x': .125, 'center_y':.5}
+                on_release: ss.inc_song(-1)    
 
 
 <WidgetManager>:
