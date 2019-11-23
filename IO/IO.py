@@ -30,7 +30,7 @@ class IO(object):
 	def light(self, key, color):
 		print("lighting")
 		if key <= self.num_keys:
-			self.pixels[key] = color
+			self.pixels[key-50] = color
 
 	def light_many(self, notes, color):
 		for i in notes:

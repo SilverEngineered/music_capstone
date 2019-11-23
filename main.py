@@ -22,7 +22,11 @@ if __name__ == "__main__":
     infile = open(args.midi_dump, 'rb')
     data = pickle.load(infile)
     notes = data['notes']
+    print(notes)
     times = data['times']
     relative_times = get_relative_times(times)
+
+    #notes = [[60]]
+
     io = IO(args.num_keys, notes, relative_times)
     io.play()
