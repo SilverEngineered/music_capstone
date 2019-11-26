@@ -10,11 +10,11 @@ from kivy.utils import get_color_from_hex
 import pprint
 
 hard_songs = {
-    'Can\'t feel my face': ('./resources/astroboy.jpg', 'The Weekend'),
-    'Generic Song Name': ('./resources/gray.jpg', 'Jamie Gray'),
-    'I THINK':  ('./resources/igor.png', 'Tyler The Creator'),
-    'STOP TRYING TO BE GOD':  ('./resources/astro.jpg', 'Travis Scott'),
-    '99.9%': ('./resources/99.jpeg', 'Kaytranada')
+    'Can\'t feel my face': ('./UI/resources/astroboy.jpg', 'The Weekend'),
+    'Generic Song Name': ('./UI/resources/gray.jpg', 'Jamie Gray'),
+    'I THINK':  ('./UI/resources/igor.png', 'Tyler The Creator'),
+    'STOP TRYING TO BE GOD':  ('./UI/resources/astro.jpg', 'Travis Scott'),
+    '99.9%': ('./UI/resources/99.jpeg', 'Kaytranada')
 }
 
 
@@ -65,8 +65,8 @@ class SongSelector(FloatLayout):
     lineup = ListProperty([])
     cur_song = 0
     song_count = 0
-    song_title = CLabel(text='', font_name='./resources/font.ttf', id='title')
-    song_artist = CLabel(text='', font_name='./resources/font.ttf')
+    song_title = CLabel(text='', font_name='./UI/resources/font.ttf', id='title')
+    song_artist = CLabel(text='', font_name='./UI/resources/font.ttf')
     callbacks = DictProperty({})
 
     def __init__(self,  **kwargs):
