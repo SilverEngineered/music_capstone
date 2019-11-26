@@ -33,7 +33,8 @@ class PianoApp(App):
         return self.manager
 
     def play(self):
-        self.io_play.start()
+        if not self.io_play.is_alive():
+            self.io_play.start()
 
     def reset_queue(self):
         self.io_reset_queue.start()
