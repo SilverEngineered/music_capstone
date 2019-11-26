@@ -1,7 +1,8 @@
 import argparse
 import pickle
 from IO.IO import IO
-
+from UI.ui_main import PianoApp
+import threading
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_keys', default=61)
@@ -25,4 +26,6 @@ if __name__ == "__main__":
     times = data['times']
     relative_times = get_relative_times(times)
     io = IO(args.num_keys, notes, relative_times)
-    io.play()
+    io_play = threading.Thread(target=io.play)
+    io_play.start()
+    PianoApp().run()
