@@ -19,6 +19,7 @@ class IO(object):
 		self.BLUE = (0, 0, 255)
 		self.RED = (255, 0, 0)
 		self.OFF = (0, 0, 0)
+		self.playing = False
 
 	def listen(self):
 		with mido.open_input(self.inputs[0]) as port:
@@ -52,6 +53,7 @@ class IO(object):
 		self.times = times
 
 	def play(self):
+		self.playing = True
 		print("Started Play")
 		for i in range(len(self.notes)):
 			self.light_many(self.notes[i], self.BLUE)
@@ -62,5 +64,6 @@ class IO(object):
 				self.light_many(self.notes[i], self.RED)
 				time.sleep(5)
 				self.light_many(self.notes[i], self.OFF)
+		self.playing = False
 		print("Ended Play")
 
