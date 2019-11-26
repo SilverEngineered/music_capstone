@@ -35,13 +35,12 @@ class PianoApp(App):
         return self.manager
 
     def play(self):
-
-        try:
-            if not self.io_play_t.is_alive():
-                self.io_play_t.start()
-        except RuntimeError:
+        if self.io_play_t is not None and self.io_play_t.is_alive():
+            self.io_play_t.start()
+        else:
+            if self.io_play_t is not None:
+                self.io_play_t.join()
             self.io_play_t = threading.Thread(target=self.io.play)
-            self.play()
 
     def reset_queue(self):
         self.io_reset_queue.start()
