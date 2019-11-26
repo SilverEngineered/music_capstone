@@ -6,7 +6,7 @@ from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.uix.image import Image
 from kivy.utils import get_color_from_hex
-
+from kivy.app import App
 import pprint
 
 hard_songs = {
@@ -181,7 +181,7 @@ class SongSelector(FloatLayout):
     def select_callback(self):
         self.callbacks['set_song'](self.lineup[self.cur_song])
         self.callbacks['switch']('game')
-
+        App.get_running_app.play()
 
 class SongTile(Image):
     idn = StringProperty('')

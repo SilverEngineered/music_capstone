@@ -26,4 +26,4 @@ if __name__ == "__main__":
     times = data['times']
     relative_times = get_relative_times(times)
     io = IO(args.num_keys, notes, relative_times)
-    PianoApp().run()
+    PianoApp(io).run()
