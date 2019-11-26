@@ -26,8 +26,8 @@ if __name__ == "__main__":
     times = data['times']
     relative_times = get_relative_times(times)
     io = IO(args.num_keys, notes, relative_times)
-    song_info =
-    [('Can\'t feel my face', './UI/resources/astroboy.jpg', 'The Weekend'),
+
+    song_info = [('Can\'t feel my face', './UI/resources/astroboy.jpg', 'The Weekend'),
      ('Generic Song Name', './UI/resources/gray.jpg', 'Jamie Gray'),
      ('I THINK' './UI/resources/igor.png', 'Tyler The Creator'),
      ('STOP TRYING TO BE GOD' './UI/resources/astro.jpg', 'Travis Scott'),
