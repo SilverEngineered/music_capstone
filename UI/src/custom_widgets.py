@@ -65,7 +65,8 @@ class SongSelector(FloatLayout):
     lineup = ListProperty([])
     cur_song = 0
     song_count = 0
-    song_title = CLabel(text='', font_name='./UI/resources/font.ttf', id='title')
+    song_title = CLabel(
+        text='', font_name='./UI/resources/font.ttf', id='title')
     song_artist = CLabel(text='', font_name='./UI/resources/font.ttf')
     callbacks = DictProperty({})
 
@@ -73,7 +74,7 @@ class SongSelector(FloatLayout):
         super(SongSelector, self).__init__(**kwargs)
         # TODO: Implement actual addition of songs
         # This is temporary
-        for key in hard_songs:
+        for key in App.get_running_app().song_dict:
             self.add_song(t_path=hard_songs[key][0],
                           name=key, artist=hard_songs[key][1])
 
@@ -182,6 +183,7 @@ class SongSelector(FloatLayout):
         self.callbacks['set_song'](self.lineup[self.cur_song])
         self.callbacks['switch']('game')
         App.get_running_app().play()
+
 
 class SongTile(Image):
     idn = StringProperty('')
