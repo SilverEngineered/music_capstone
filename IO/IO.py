@@ -28,7 +28,6 @@ class IO(object):
 					self.queue.append((msg, time.time() - start))
 
 	def light(self, key, color):
-		print("lighting")
 		if key <= self.num_keys:
 			self.pixels[key] = color
 
@@ -53,6 +52,7 @@ class IO(object):
 		self.times = times
 
 	def play(self):
+		print("Started Play")
 		for i in range(len(self.notes)):
 			self.light_many(self.notes[i], self.BLUE)
 			if i != len(self.notes) - 1:
@@ -62,4 +62,5 @@ class IO(object):
 				self.light_many(self.notes[i], self.RED)
 				time.sleep(5)
 				self.light_many(self.notes[i], self.OFF)
+		print("Ended Play")
 
