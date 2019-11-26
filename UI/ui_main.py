@@ -43,7 +43,7 @@ class PianoApp(App):
             self.io_play_t = threading.Thread(target=self.io.play)
             if not self.io.playing:
                 self.io_play_t.start()
-            
+
     def reset_queue(self):
         self.io_reset_queue.start()
 

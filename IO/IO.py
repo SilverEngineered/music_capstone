@@ -15,7 +15,6 @@ class IO(object):
 		self.pixels = NeoPixel(board.D18, self.num_keys)
 		self.inputs = mido.get_input_names()
 		self.queue = []
-		self.pause = False
 		self.BLUE = (0, 0, 255)
 		self.RED = (255, 0, 0)
 		self.OFF = (0, 0, 0)
@@ -25,7 +24,7 @@ class IO(object):
 		with mido.open_input(self.inputs[0]) as port:
 			start = time.time()
 			for msg in port:
-				if not self.pause:
+				if self.play:
 					self.queue.append((msg, time.time() - start))
 
 	def light(self, key, color):
@@ -53,7 +52,9 @@ class IO(object):
 		self.times = times
 
 	def play(self):
+		self.reset_queue()
 		self.playing = True
+		self.threaded_listen()
 		print("Started Play")
 		for i in range(len(self.notes)):
 			self.light_many(self.notes[i], self.BLUE)
@@ -66,4 +67,5 @@ class IO(object):
 				self.light_many(self.notes[i], self.OFF)
 		self.playing = False
 		print("Ended Play")
+		print(self.queue)
 
