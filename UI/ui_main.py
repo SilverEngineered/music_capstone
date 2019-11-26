@@ -19,11 +19,11 @@ mutils.load_resources()
 class PianoApp(App):
     manager = None
     io = None
+    io_play_t = None
     # Create the app for our specific case "Piano App"
 
     def __init__(self, io, **kwargs):
         App.__init__(self)
-        self.io_play = threading.Thread(target=io.play)
         self.io_reset_queue = threading.Thread(target=io.reset_queue)
         self.io_threaded_listen = threading.Thread(target=io.threaded_listen)
         # Initialize the screen manager
@@ -33,8 +33,13 @@ class PianoApp(App):
         return self.manager
 
     def play(self):
-        if not self.io_play.is_alive():
-            self.io_play.start()
+
+        try:
+            if not self.io_play_t.is_alive():
+                self.io_play_t.start()
+        except RuntimeError("threads can only be started once"):
+            self.io_play_t = threading.Thread(target=self.io.play)
+            self.play()
 
     def reset_queue(self):
         self.io_reset_queue.start()
