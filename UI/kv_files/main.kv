@@ -25,6 +25,7 @@
 
 <SelectionScreen@CScreen>:
     idn: 's_screen'
+    id: s_screen
     canvas:
         Color:
             rgba: hex("#d9d9d9")
@@ -38,47 +39,102 @@
         SongSelector:
             id: ss
             size_hint: 1, 1
+            callbacks: s_screen.callbacks
             pos_hint: {'center_x':.5, 'center_y':.5}
             CButton:
                 background_normal: ''
-                background_color: hex('#80b8c7e0')
+                background_color: hex('#8078818a')
                 id: next_song
                 idn: 'next_song'
-                size_hint: .15, .1
+                size_hint: .2, .125
                 pos_hint: {'center_x': .75, 'center_y':.1}
                 text: 'Next'
                 font_name: './resources/font.ttf'
                 font_size: 40
-                color: hex('#c5d6d5')
+                color: hex('#535659')
                 on_release: ss.inc_song(1)
+                
                 
         
             CButton:
                 background_normal: ''
-                background_color: hex('#80b8c7e0')
+                background_color: hex('#8078818a')
                 id: last_song
                 idn: 'last_song'
-                size_hint: .15, .1
+                size_hint: .2, .125
                 pos_hint: {'center_x': .25, 'center_y':.1}
                 text: 'Last'
                 font_name: './resources/font.ttf'
                 font_size: 40
-                color: hex('#c5d6d5')
+                color: hex('#535659')
                 on_release: ss.inc_song(-1)
             
             CButton:
                 background_normal: ''
-                background_color: hex('#80b8c7e0')
+                background_color: hex('#8078818a')
                 id: select
                 idn: 'select_song'
-                size_hint: .15, .1
+                size_hint: .2, .125
                 pos_hint: {'center_x': .5, 'center_y':.1}
                 text: 'Select'
                 font_name: './resources/font.ttf'
                 font_size: 40
-                color: hex('#c5d6d5')
-                on_release: print('selected: ' + str(ss.get_song_name()))
+                color: hex('#535659')
+                on_release: ss.select_callback()
 
+<GameScreen@CScreen>:
+    idn: 'g_screen'
+    id: g_screen
+    canvas:
+        Color:
+            rgba: hex("#d9d9d9")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    CFlay:
+        idn: 'g_flay'
+        CFlay:
+            size_hint: .5, .4
+            pos_hint: {'center_x':.5, 'center_y':.5}
+            id: now_playing
+            canvas:
+                Color:
+                    rgba: 1, 0, 0, .5
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                Color:
+                    rgba: 0, 1, 1, .5
+                Rectangle:
+                    size: self.size[0] - 20, self.size[1] -20
+                    pos: self.pos[0] + 10, self.pos[1] + 10
+            CLabel:
+                size_hint: .6, .5
+                pos_hint: {'x':.4225, 'center_y':.6}
+                text: g_screen.s_title
+                font_size: self.parent.width / g_screen.get_den(True)
+                font_name: './resources/font.ttf'
+                color: hex('#4c4d4c')
+            CLabel:
+                size_hint: .6, .5
+                pos_hint: {'x':.4225, 'center_y':.40}
+                text: g_screen.s_artist
+                font_size: self.parent.width / g_screen.get_den(False)
+                font_name: './resources/font.ttf'
+                color: hex('#4c4d4c')
+            Image:
+                size_hint: (now_playing.height - 20) / now_playing.height, (now_playing.height - 20) / now_playing.height 
+                pos_hint: {'center_x':(now_playing.height - 20) / (now_playing.height * 2) - .25, 'center_y':.5}
+                pos_x: 0
+                source: g_screen.s_tpath
+
+        CButton:
+            idn: 'BackButton'
+            id: back_button
+            text: 'Back'
+            size_hint: .15, .1
+            pos_hint: {'x':0.03, 'y':0.85}
+            on_release: g_screen.callbacks['switch']('selection')
 
 <WidgetManager>:
     id: wmanager

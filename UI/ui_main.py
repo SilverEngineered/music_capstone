@@ -4,19 +4,19 @@ from kivy.app import App
 from src import custom_widgets
 from src.screen_manager import MainManager
 import src.mutils as mutils
+from kivy.core.window import Window
 
 import pprint
 
 
 # Call the Config Setter
-mutils.set_config(width=1280, height=800, resizable=False)
+mutils.set_screen(width=1920, height=1080)
 
 # Call resource loader
 mutils.load_resources()
 
 
 class PianoApp(App):
-    psm = None
     manager = None
 
     # Create the app for our specific case "Piano App"

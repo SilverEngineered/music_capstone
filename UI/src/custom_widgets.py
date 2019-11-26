@@ -13,7 +13,8 @@ hard_songs = {
     'Can\'t feel my face': ('./resources/astroboy.jpg', 'The Weekend'),
     'Generic Song Name': ('./resources/gray.jpg', 'Jamie Gray'),
     'I THINK':  ('./resources/igor.png', 'Tyler The Creator'),
-    'STOP TRYING TO BE GOD':  ('./resources/astro.jpg', 'Travis Scott')
+    'STOP TRYING TO BE GOD':  ('./resources/astro.jpg', 'Travis Scott'),
+    '99.9%': ('./resources/99.jpeg', 'Kaytranada')
 }
 
 
@@ -66,8 +67,9 @@ class SongSelector(FloatLayout):
     song_count = 0
     song_title = CLabel(text='', font_name='./resources/font.ttf', id='title')
     song_artist = CLabel(text='', font_name='./resources/font.ttf')
+    callbacks = DictProperty({})
 
-    def __init__(self, **kwargs):
+    def __init__(self,  **kwargs):
         super(SongSelector, self).__init__(**kwargs)
         # TODO: Implement actual addition of songs
         # This is temporary
@@ -106,20 +108,17 @@ class SongSelector(FloatLayout):
     def draw_songs(self):
         for widget in self.walk():
             if type(widget) is SongTile:
+                print("removing songtile: {}".format(widget.name))
                 self.remove_widget(widget)
 
         if self.song_count > 0:
-            if self.cur_song < self.song_count - 1:
-                n_song = self.lineup[self.cur_song + 1]
-                self.add_widget(n_song)
-                n_song.size_hint = .35, .35
-                n_song.pos_hint = {'center_x': .65, 'center_y': .6}
+            # Draw the tiles to the right of the main one
+            self.draw_adj(1, (.35, .35), {
+                          'center_x': .65, 'center_y': .6}, self.cur_song)
 
-            if self.cur_song > 0:
-                p_song = self.lineup[self.cur_song - 1]
-                self.add_widget(p_song)
-                p_song.size_hint = .35, .35
-                p_song.pos_hint = {'center_x': .35, 'center_y': .6}
+            # Draw the tiles to the left of the main one
+            self.draw_adj(-1, (.35, .35),
+                          {'center_x': .35, 'center_y': .6}, self.cur_song)
 
             c_song = self.lineup[self.cur_song]
             self.add_widget(c_song)
@@ -129,6 +128,41 @@ class SongSelector(FloatLayout):
             c_song.pos_hint = {'center_x': .5, 'center_y': .6}
             self.song_title.text = c_song.name
             self.song_artist.text = c_song.artist
+
+    def draw_adj(self, loc, size_hint, pos_hint, root_i, recur=True):
+        if self.song_count > 1:
+            n_song = None
+
+            # This is to add the songtile on the right
+            if loc == 1 and root_i < self.song_count - 1:
+                n_song = self.lineup[root_i + 1]
+                print("adding song: {}".format(self.lineup[root_i + 1].name))
+                if recur:
+                    self.draw_adj(1,
+                                  (size_hint[0] - .10, size_hint[1] - .1),
+                                  {'center_x': pos_hint['center_x']+.08,
+                                      'center_y': pos_hint['center_y']},
+                                  root_i=root_i + 1, recur=False
+                                  )
+
+            # This is to add the songtile on the left
+            elif loc == -1 and root_i > 0:
+                n_song = self.lineup[root_i - 1]
+                print("adding song: {}".format(self.lineup[root_i - 1].name))
+                if recur:
+                    self.draw_adj(-1,
+                                  (size_hint[0] - .10, size_hint[1] - .1),
+                                  {'center_x': pos_hint['center_x']-.08,
+                                      'center_y': pos_hint['center_y']},
+                                  root_i=root_i - 1, recur=False
+                                  )
+            else:
+                return
+
+            # Now we actually add the widget
+            n_song.size_hint = size_hint
+            n_song.pos_hint = pos_hint
+            self.add_widget(n_song)
 
     def inc_song(self, inc):
         if self.song_count <= 0:
@@ -143,6 +177,10 @@ class SongSelector(FloatLayout):
 
     def get_song_name(self):
         return self.lineup[self.cur_song].name
+
+    def select_callback(self):
+        self.callbacks['set_song'](self.lineup[self.cur_song])
+        self.callbacks['switch']('game')
 
 
 class SongTile(Image):
