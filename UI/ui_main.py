@@ -26,8 +26,6 @@ class PianoApp(App):
         App.__init__(self)
         self.io = io
         self.playing = False
-        self.io_reset_queue = threading.Thread(target=io.reset_queue)
-        self.io_threaded_listen = threading.Thread(target=io.threaded_listen)
         # Initialize the screen manager
         self.manager = MainManager()
 
@@ -43,12 +41,6 @@ class PianoApp(App):
             self.io_play_t = threading.Thread(target=self.io.play)
             if not self.io.playing:
                 self.io_play_t.start()
-
-    def reset_queue(self):
-        self.io_reset_queue.start()
-
-    def threaded_listen(self):
-        self.io_threaded_listen.start()
 
 
 if __name__ == '__main__':

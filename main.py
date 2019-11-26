@@ -26,4 +26,5 @@ if __name__ == "__main__":
     times = data['times']
     relative_times = get_relative_times(times)
     io = IO(args.num_keys, notes, relative_times)
-    PianoApp(io).run()
+    song_info = [('Wow such Title','Wow such artist','/path/to/file1.png'),('Wow such BAD Title','Wow such BAD artist', '/path/to/file2.png')]
+    PianoApp(io, song_info).run()
