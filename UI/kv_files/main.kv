@@ -20,7 +20,7 @@
             size_hint: 1, .5
             text: 'Piano Teacher'
             font_size: self.header_size * 2
-            font_name: './resources/font.ttf'
+            font_name: './UI/resources/font.ttf'
             color: hex('#4c4d4c')
 
 <SelectionScreen@CScreen>:
@@ -49,7 +49,7 @@
                 size_hint: .2, .125
                 pos_hint: {'center_x': .75, 'center_y':.1}
                 text: 'Next'
-                font_name: './resources/font.ttf'
+                font_name: './UI/resources/font.ttf'
                 font_size: 40
                 color: hex('#535659')
                 on_release: ss.inc_song(1)
@@ -64,7 +64,7 @@
                 size_hint: .2, .125
                 pos_hint: {'center_x': .25, 'center_y':.1}
                 text: 'Last'
-                font_name: './resources/font.ttf'
+                font_name: './UI/resources/font.ttf'
                 font_size: 40
                 color: hex('#535659')
                 on_release: ss.inc_song(-1)
@@ -77,7 +77,7 @@
                 size_hint: .2, .125
                 pos_hint: {'center_x': .5, 'center_y':.1}
                 text: 'Select'
-                font_name: './resources/font.ttf'
+                font_name: './UI/resources/font.ttf'
                 font_size: 40
                 color: hex('#535659')
                 on_release: ss.select_callback()
@@ -113,14 +113,14 @@
                 pos_hint: {'x':.4225, 'center_y':.6}
                 text: g_screen.s_title
                 font_size: self.parent.width / g_screen.get_den(True)
-                font_name: './resources/font.ttf'
+                font_name: './UI/resources/font.ttf'
                 color: hex('#4c4d4c')
             CLabel:
                 size_hint: .6, .5
                 pos_hint: {'x':.4225, 'center_y':.40}
                 text: g_screen.s_artist
                 font_size: self.parent.width / g_screen.get_den(False)
-                font_name: './resources/font.ttf'
+                font_name: './UI/resources/font.ttf'
                 color: hex('#4c4d4c')
             Image:
                 size_hint: (now_playing.height - 20) / now_playing.height, (now_playing.height - 20) / now_playing.height 
