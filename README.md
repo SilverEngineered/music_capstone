@@ -14,7 +14,7 @@ We will be using feature branches to organize our code, meaning no work will be 
 
 
 #### I want to create a new feature
-1.)  Branch off from Master's latest stable release (LSR) with a branch using this convention feature/{type_of_feature}/{name_of_feature}.
+1.)  Branch off from Master's latest stable release (LSR) with a branch using this convention feature/{type_of_feature}/{name_of_feature}. (please use snake_case)
 
 ex. feature/machine_learning/midi_extraction_algorithm
 
@@ -34,7 +34,7 @@ ex. feature/machine_learning/midi_extraction_algorithm
 A.) Your request will be approved by somebody (any 1 other person)
 B.)  A reviewer will (again, any 1 other person) have something to say about the code or have questions about it in which case respond to these questions/concerns and update the PR.
 
-3.) Merge and Close the feature Branch
+3.) Merge and Close the feature Branch (On github.com)
 
 🎉🥳🎉 Congradulations!!! You have just added a cool new feature to our codebase
 

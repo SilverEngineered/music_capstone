@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Editors
 .vscode/
 .idea/
@@ -123,3 +124,7 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+=======
+.idea
+__pycache__
+>>>>>>> feature/game_template
