@@ -21,9 +21,12 @@ class PianoApp(App):
     io = None
     io_play_t = None
     # Create the app for our specific case "Piano App"
+    song_dict = None
 
-    def __init__(self, io, **kwargs):
+    # Song info in format
+    def __init__(self, io, song_info, ** kwargs):
         App.__init__(self)
+        self.format_song_info(song_info)
         self.io = io
         self.playing = False
         self.io_reset_queue = threading.Thread(target=io.reset_queue)
@@ -33,6 +36,12 @@ class PianoApp(App):
 
     def build(self):
         return self.manager
+
+    def format_song_info(self, song_info):
+        song_dict = {}
+        for song in song_info:
+            song_dict[song[0]] = (song[1], song[2])
+        self.song_dict = song_dict
 
     def play(self):
         if self.io_play_t is not None and self.io_play_t.is_alive():
