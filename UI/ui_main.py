@@ -37,7 +37,7 @@ class PianoApp(App):
         try:
             if not self.io_play_t.is_alive():
                 self.io_play_t.start()
-        except RuntimeError("threads can only be started once"):
+        except RuntimeError:
             self.io_play_t = threading.Thread(target=self.io.play)
             self.play()
 
