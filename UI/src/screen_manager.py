@@ -1,6 +1,6 @@
 from kivy.uix.screenmanager import Screen, ScreenManager, SlideTransition
 from kivy.properties import StringProperty
-from src.custom_widgets import CScreen
+from UI.src.custom_widgets import CScreen
 
 
 class MainMenuScreen(CScreen):

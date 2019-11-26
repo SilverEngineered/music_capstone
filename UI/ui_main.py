@@ -1,16 +1,16 @@
 from kivy.uix.widget import Widget
 from kivy.app import App
 
-from src import custom_widgets
-from src.screen_manager import MainManager
-import src.mutils as mutils
+from UI.src import custom_widgets
+from UI.src.screen_manager import MainManager
+import UI.src.mutils as mutils
 from kivy.core.window import Window
-
+import threading
 import pprint
 
 
 # Call the Config Setter
-mutils.set_screen(width=1920, height=1080)
+mutils.set_screen(width=1200, height=800)
 
 # Call resource loader
 mutils.load_resources()
