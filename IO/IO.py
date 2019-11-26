@@ -51,6 +51,9 @@ class IO(object):
 	def set_times(self, times):
 		self.times = times
 
+	def print_message(self, msg, time_i):
+		print(str(time_i) + "---" + str(msg.type) + ":" + str(msg.note))
+
 	def play(self):
 		self.reset_queue()
 		self.playing = True
@@ -67,5 +70,7 @@ class IO(object):
 				self.light_many(self.notes[i], self.OFF)
 		self.playing = False
 		print("Ended Play")
-		print(self.queue)
+		self.queue.sort(key=lambda x: x[1])
+		for b_msg in self.queue:
+			self.print_message(b_msg[0], b_msg[1])
 
