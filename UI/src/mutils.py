@@ -4,8 +4,8 @@ from kivy.core.window import Window
 
 
 def load_resources():
-    Builder.load_file('kv_files/custom_widgets.kv')
-    Builder.load_file('kv_files/main.kv')
+    Builder.load_file('UI/kv_files/custom_widgets.kv')
+    Builder.load_file('UI/kv_files/main.kv')
 
 
 def set_screen(width=1280, height=800):
