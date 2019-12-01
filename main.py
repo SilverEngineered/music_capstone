@@ -52,7 +52,7 @@ if __name__ == "__main__":
      ('I THINK', './UI/resources/igor.png', 'Tyler The Creator'),
      ('STOP TRYING TO BE GOD', './UI/resources/astro.jpg', 'Travis Scott'),
      ('99.9%', './UI/resources/99.jpeg', 'Kaytranada')]
-    print(song_info)
-    print(song_tuples)
-    exit()
+    #print(song_info)
+    #print(song_tuples)
+    #exit()
     PianoApp(io, song_tuples).run()
