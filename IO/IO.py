@@ -38,7 +38,7 @@ class IO(object):
 
 	def light(self, key, color):
 		if key >=self.offset and key <= self.num_keys + self.light_offset:
-			self.pixels[key-self.offset] = color
+			self.pixels[key-self.light_offset] = color
 
 	def light_many(self, notes, color):
 		for i in notes:
