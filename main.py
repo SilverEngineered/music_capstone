@@ -18,6 +18,7 @@ def get_relative_times(times):
         total_time = i
     return new_times
 
+
 def get_tuple_data_from_csv(path):
     data = []
     with open(path) as csv_file:
@@ -31,16 +32,19 @@ def get_tuple_data_from_csv(path):
                 line_count += 1
         return data
 
+
 def get_song_data_hash(song_info):
     song_data = {}
     for i in song_info:
-        song_data[i[0]] = pickle.load(i[3])
+        infile = open(i[3], 'rb')
+        song_data[i[0]] = pickle.load(infile)
     return song_data
+
 
 if __name__ == "__main__":
     path = 'song_data.csv'
     song_info = get_tuple_data_from_csv(path)
     song_tuples = [(i[0], i[1], i[2]) for i in song_info]
     song_data = get_song_data_hash(song_info)
-    io = IO(args.num_keys)
+    io = IO(args.num_keys, song_data)
     PianoApp(io, song_tuples).run()
