@@ -53,12 +53,6 @@ class IO(object):
 		listen_thread = threading.Thread(target=self.listen)
 		listen_thread.start()
 
-	def set_notes(self, notes):
-		self.notes = notes
-
-	def set_times(self, times):
-		self.times = times
-
 	def print_message(self, msg, time_i):
 		print(str(time_i) + "---" + str(msg.type) + ":" + str(msg.note))
 
