@@ -11,11 +11,11 @@ from kivy.clock import Clock
 import pprint
 
 hard_songs = {
-    'Can\'t feel my face': ('./UI/resources/astroboy.jpg', 'The Weekend'),
-    'Generic Song Name': ('./UI/resources/gray.jpg', 'Jamie Gray'),
-    'I THINK':  ('./UI/resources/igor.png', 'Tyler The Creator'),
-    'STOP TRYING TO BE GOD':  ('./UI/resources/astro.jpg', 'Travis Scott'),
-    '99.9%': ('./UI/resources/99.jpeg', 'Kaytranada')
+    'Frosty The Snowman': ('./UI/resources/frosty.jpg', 'The Ronettes'),
+    'Fur Elise': ('./UI/resources/fur.jpeg', 'Beethoven'),
+    'Twinkle Twinkle':  ('./UI/resources/twinkle.jpeg', 'Jane Taylor'),
+    'Bare Necessities':  ('./UI/resources/bare.jpeg', 'Bruce Reitherman'),
+    'The Lion Sleeps Tonight': ('./UI/resources/lion.jpeg', 'Solomon Linda')
 }
 
 
