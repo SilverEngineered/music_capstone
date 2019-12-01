@@ -19,6 +19,7 @@ class IO(object):
 		self.RED = (255, 0, 0)
 		self.OFF = (0, 0, 0)
 		self.playing = False
+		self.light_offset = 36
 
 	def get_relative_times(self, times):
 		new_times = []
@@ -36,8 +37,8 @@ class IO(object):
 					self.queue.append((msg, time.time() - start))
 
 	def light(self, key, color):
-		if key <= self.num_keys:
-			self.pixels[key] = color
+		if key >=36 and key <= 97:
+			self.pixels[key-36] = color
 
 	def light_many(self, notes, color):
 		for i in notes:
