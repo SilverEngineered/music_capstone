@@ -38,8 +38,6 @@ def get_song_data_hash(song_info):
     return song_data
 
 if __name__ == "__main__":
-    infile = open(args.midi_dump, 'rb')
-    data = pickle.load(infile)
     path = 'song_data.csv'
     io = IO(args.num_keys)
     song_info = get_tuple_data_from_csv(path)
