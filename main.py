@@ -47,4 +47,12 @@ if __name__ == "__main__":
     song_tuples = [(i[0], i[1], i[2]) for i in song_info]
     song_data = get_song_data_hash(song_info)
     io = IO(args.num_keys, song_data)
+    song_info = [('Can\'t feel my face', './UI/resources/astroboy.jpg', 'The Weekend'),
+     ('Generic Song Name', './UI/resources/gray.jpg', 'Jamie Gray'),
+     ('I THINK', './UI/resources/igor.png', 'Tyler The Creator'),
+     ('STOP TRYING TO BE GOD', './UI/resources/astro.jpg', 'Travis Scott'),
+     ('99.9%', './UI/resources/99.jpeg', 'Kaytranada')]
+    print(song_info)
+    print(song_tuples)
+    exit()
     PianoApp(io, song_tuples).run()
