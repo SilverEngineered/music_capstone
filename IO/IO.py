@@ -63,7 +63,7 @@ class IO(object):
 		print(str(time_i) + "---" + str(msg.type) + ":" + str(msg.note))
 
 	def this_runtime(self):
-		return sum(self.get_relative_times(self.song_data[self.cur_song]['times']))
+		return sum(self.get_relative_times(self.song_data[self.cur_song]['times'])) + 5
 
 	def play(self, song):
 		self.cur_song = song
