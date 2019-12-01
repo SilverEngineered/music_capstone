@@ -37,8 +37,8 @@ class IO(object):
 					self.queue.append((msg, time.time() - start))
 
 	def light(self, key, color):
-		if key >=36 and key <= 97:
-			self.pixels[key-36] = color
+		if key >=self.offset and key <= self.num_keys + self.light_offset:
+			self.pixels[key-self.offset] = color
 
 	def light_many(self, notes, color):
 		for i in notes:
