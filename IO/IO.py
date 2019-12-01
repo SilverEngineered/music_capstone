@@ -8,10 +8,10 @@ import threading
 import time
 
 class IO(object):
-	def __init__(self, num_keys, notes, times):
+	def __init__(self, num_keys, song_data):
 		self.num_keys = num_keys
-		self.notes = notes
-		self.times = times
+		self.song_data = song_data
+		self.cur_song = None
 		self.pixels = NeoPixel(board.D18, self.num_keys)
 		self.inputs = mido.get_input_names()
 		self.queue = []
@@ -19,6 +19,14 @@ class IO(object):
 		self.RED = (255, 0, 0)
 		self.OFF = (0, 0, 0)
 		self.playing = False
+
+	def get_relative_times(self, times):
+		new_times = []
+		total_time = 0
+		for i in times:
+			new_times.append(i - total_time)
+			total_time = i
+		return new_times
 
 	def listen(self):
 		with mido.open_input(self.inputs[0]) as port:
@@ -54,20 +62,26 @@ class IO(object):
 	def print_message(self, msg, time_i):
 		print(str(time_i) + "---" + str(msg.type) + ":" + str(msg.note))
 
-	def play(self):
+	def this_runtime(self):
+		return sum(self.times)
+
+	def play(self, song):
+		self.cur_song = song
+		notes = self.song_data[self.cur_song]['notes']
+		times = self.get_relative_times(self.song_data[self.cur_song]['times'])
 		self.reset_queue()
 		self.playing = True
 		self.threaded_listen()
 		print("Started Play")
-		for i in range(len(self.notes)):
-			self.light_many(self.notes[i], self.BLUE)
-			if i != len(self.notes) - 1:
-				time.sleep(self.times[i])
-				self.light_many(self.notes[i], self.OFF)
+		for i in range(len(notes)):
+			self.light_many(notes[i], self.BLUE)
+			if i != len(notes) - 1:
+				time.sleep(times[i])
+				self.light_many(notes[i], self.OFF)
 			else:
-				self.light_many(self.notes[i], self.RED)
+				self.light_many(notes[i], self.RED)
 				time.sleep(5)
-				self.light_many(self.notes[i], self.OFF)
+				self.light_many(notes[i], self.OFF)
 		self.playing = False
 		print("Ended Play")
 		self.queue.sort(key=lambda x: x[1])

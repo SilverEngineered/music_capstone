@@ -47,7 +47,7 @@ class PianoApp(App):
         else:
             if self.io_play_t is not None:
                 self.io_play_t.join()
-            self.io_play_t = threading.Thread(target=self.io.play)
+            self.io_play_t = threading.Thread(target=self.io.play, args=(song_name,))
             if not self.io.playing:
                 self.io_play_t.start()
 
