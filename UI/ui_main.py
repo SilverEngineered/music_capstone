@@ -41,7 +41,7 @@ class PianoApp(App):
             song_dict[song[0]] = (song[1], song[2])
         self.song_dict = song_dict
 
-    def play(self):
+    def play(self, song_name):
         if self.io_play_t is not None and self.io_play_t.is_alive():
             pass
         else:
@@ -50,7 +50,3 @@ class PianoApp(App):
             self.io_play_t = threading.Thread(target=self.io.play)
             if not self.io.playing:
                 self.io_play_t.start()
-
-
-if __name__ == '__main__':
-    PianoApp().run()

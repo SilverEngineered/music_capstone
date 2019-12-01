@@ -182,7 +182,7 @@ class SongSelector(FloatLayout):
     def select_callback(self):
         self.callbacks['set_song'](self.lineup[self.cur_song])
         self.callbacks['switch']('game')
-        App.get_running_app().play()
+        App.get_running_app().play(self.get_song_name())
 
 
 class SongTile(Image):
