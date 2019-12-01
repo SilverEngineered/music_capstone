@@ -39,7 +39,8 @@ def get_song_data_hash(song_info):
 
 if __name__ == "__main__":
     path = 'song_data.csv'
-    io = IO(args.num_keys)
     song_info = get_tuple_data_from_csv(path)
     song_tuples = [(i[0], i[1], i[2]) for i in song_info]
+    song_data = get_song_data_hash(song_info)
+    io = IO(args.num_keys)
     PianoApp(io, song_tuples).run()
