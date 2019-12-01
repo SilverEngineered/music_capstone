@@ -1,6 +1,6 @@
 import mido
 import pickle
-mid = mido.MidiFile('../Resources/midi/elise.mid')
+mid = mido.MidiFile('../Resources/midi/lion.mid')
 
 midis =[i for i in  mid.play()]
 filtered_midi = []
@@ -32,7 +32,7 @@ for i in filtered_midi:
 		times.append(time)
 		notes.append([i.note])
 
-pickle.dump(({'notes': notes, 'times': times}), open("../Resources/midi_dumps/elise.p", "wb"))
+pickle.dump(({'notes': notes, 'times': times}), open("../Resources/midi_dumps/lion.p", "wb"))
 '''
 mini = 100
 
