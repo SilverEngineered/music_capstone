@@ -1,6 +1,7 @@
 import argparse
 import pickle
-from IO.IO import IO
+#from IO.IO import IO
+from IO.Contr import Contr
 from UI.ui_main import PianoApp
 import csv
 import threading
@@ -45,6 +46,7 @@ if __name__ == "__main__":
     path = 'song_data.csv'
     song_info = get_tuple_data_from_csv(path)
     song_tuples = [(i[0], i[1], i[2]) for i in song_info]
-    song_data = get_song_data_hash(song_info)
-    io = IO(args.num_keys, song_data)
+    #song_data = get_song_data_hash(song_info)
+    #io = IO(args.num_keys, song_data)
+    io = Contr()
     PianoApp(io, song_tuples).run()
