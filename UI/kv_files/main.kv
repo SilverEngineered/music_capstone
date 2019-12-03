@@ -97,17 +97,6 @@
             size_hint: .5, .4
             pos_hint: {'center_x':.5, 'center_y':.5}
             id: now_playing
-            canvas:
-                Color:
-                    rgba: 1, 0, 0, .5
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
-                Color:
-                    rgba: 0, 1, 1, .5
-                Rectangle:
-                    size: self.size[0] - 20, self.size[1] -20
-                    pos: self.pos[0] + 10, self.pos[1] + 10
             CLabel:
                 size_hint: .6, .5
                 pos_hint: {'x':.4225, 'center_y':.6}
