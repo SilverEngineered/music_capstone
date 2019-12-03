@@ -75,9 +75,10 @@ class SongSelector(FloatLayout):
         super(SongSelector, self).__init__(**kwargs)
         # TODO: Implement actual addition of songs
         # This is temporary
-        for key in App.get_running_app().song_dict:
-            self.add_song(t_path=hard_songs[key][0],
-                          name=key, artist=hard_songs[key][1])
+        song_dict = App.get_running_app().song_dict
+        for key in song_dict:
+            self.add_song(t_path=song_dict[key][0],
+                          name=key, artist=song_dict[key][1])
 
         # Set up the title for the Song
         self.setup_title()
