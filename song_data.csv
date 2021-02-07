@@ -1,0 +1,6 @@
+song_name,thumbnail_path,artist,data_loc
+Frosty The Snowman,./UI/resources/frosty.jpg,The Ronettes,Resources/midi_dumps/frosty.p
+Fur Elise,./UI/resources/fur.jpeg,Beethoven,Resources/midi_dumps/elise.p
+Twinkle Twinkle,./UI/resources/twinkle.jpeg,Jane Taylor,Resources/midi_dumps/twinkle.p
+Bare Necessities,./UI/resources/bare.jpeg,Bruce Reitherman,Resources/midi_dumps/bare.p
+The Lion Sleeps Tonight,./UI/resources/lion.jpeg,Solomon Linda,Resources/midi_dumps/lion.p

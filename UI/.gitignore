@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 # Editors
 .vscode/
 .idea/
+ui_venv/
 
 # Vagrant
 .vagrant/
@@ -124,7 +124,3 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-=======
-.idea
-__pycache__
->>>>>>> feature/game_template
