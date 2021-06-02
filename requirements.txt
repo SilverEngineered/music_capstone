@@ -14,7 +14,7 @@ SQLAlchemy==1.3.1
 SQLAlchemy-Continuum==1.3.9
 SQLAlchemy-Utils==0.33.11
 tqdm==4.31.1
-urllib3==1.24.2
+urllib3==1.26.5
 adafruit-circuitpython-neopixel==3.4.0
 rpi-ws281x==1.0.0
 mido==1.2.9
